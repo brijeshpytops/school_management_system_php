@@ -50,15 +50,16 @@
                 @endif
             </td>
             <td>
-                <a href="{{ route('students.show') }}" class="btn btn-primary fs-5"><i class="bi bi-eye"></i></a>
+                <a href="{{ route('students.show', ['student' => $student->id]) }}" class="btn btn-primary "><i class="bi bi-eye"></i></a>
                  &nbsp;&nbsp;
-                <a href="" class="btn btn-success  fs-5"> <i class="bi bi-pencil-square"></i></a> &nbsp;&nbsp;
-                {{-- <a href="{{ route('students.show', $student->id) }}" class="btn btn-primary fs-5"><i class="bi bi-eye"></i></a>
-                 &nbsp;&nbsp;
-                <a href="{{ route('studnets.edit', $student->id) }}" class="btn btn-success  fs-5"> <i class="bi bi-pencil-square"></i></a> &nbsp;&nbsp; --}}
+
+                <a href="{{ route('students.edit', ['student' => $student]) }}" class="btn btn-success  "> <i class="bi bi-pencil-square"></i></a> &nbsp;&nbsp;
                 
-                
-                <a href="" class="btn btn-danger fs-5"><i class="bi bi-trash"></i></a> &nbsp;&nbsp;
+                <form action="{{ route('students.destroy', $student->id) }}" method="POST" class="d-inline-block">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+            </form>
             </td>
         </tr>
     @endforeach

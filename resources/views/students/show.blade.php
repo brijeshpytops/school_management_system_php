@@ -1,4 +1,4 @@
-@extends('base')
+@extends('students.base')
 
 @section('title')
     
@@ -9,7 +9,7 @@
 @endsection
 
 @section('body')
-<div class="row justify-content-center">
+<div class="row justify-content-center my-5">
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">Student Details</div>

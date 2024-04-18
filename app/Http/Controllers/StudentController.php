@@ -10,7 +10,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $students = Student::latest()->paginate(5);
+        $students = Student::latest()->paginate(10);
         return view('students.index', compact('students'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -20,8 +20,10 @@ class StudentController extends Controller
         return view('students.create');
     }
 
-    public function show(){
-        return view('students.show');
+    public function show($student_id){
+        $student = Student::findOrFail($student_id);
+        echo $student;
+        return view('students.show', compact('student'));
     }
 
     public function store(Request $request)
@@ -38,10 +40,6 @@ class StudentController extends Controller
 
     public function update(Request $request, Student $student)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:students,email,'.$student->id,
-        ]);
 
         $student->update($request->all());
         return redirect()->route('students.index')->with('success', 'Student updated successfully.');

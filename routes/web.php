@@ -8,5 +8,3 @@ Route::get('/', function () {
 });
 
 Route::resource('students', StudentController::class);
-
-Route::get('/students/{student}', [StudentController::class, 'show']);
